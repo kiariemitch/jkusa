@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply as a Candidate - JKUSA 2025</title>
+    <link rel="stylesheet" href="Apply.css">
+</head>
+<body>
+    <nav class="navbar">
+        <img src="media/yuEbkvie_400x400.jpg" alt="JKUSA Logo" class="logo-image">
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-item">Home</a></li>
+            <li><a href="apply.html" class="nav-item">Apply</a></li>
+            <li><a href="candidate.html" class="nav-item">Candidates</a></li>
+        </ul>
+    </nav>
+
+    <div class="apply-container">
+        <h2>Apply as a Candidate</h2>
+        <form id="apply-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="poster">Upload Poster:</label>
+            <input type="file" id="poster" name="poster" accept="image/*" required>
+
+            <label for="manifesto">Upload Manifesto (PDF or DOC):</label>
+            <input type="file" id="manifesto" name="manifesto" accept=".pdf,.doc,.docx" required>
+
+            <label for="video">YouTube Video URL:</label>
+            <input type="url" id="video" name="video" required>
+
+            <button type="submit">Submit Application</button>
+        </form>
+        <p id="statusMessage"></p>
+    </div>
+
+    <script src="apply.js"></script>
+</body>
+</html>
