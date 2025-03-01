@@ -46,43 +46,53 @@
         <button id="see-more-btn" class="small-btn">See More</button>
     </section>
 
-    <!-- Candidate Details Section -->
-    <section id="candidate-details" class="candidate-details hidden">
-        <h2 id="candidate-name"></h2>
-        <img id="candidate-poster" src="" alt="Candidate Poster">
-        <div id="candidate-manifesto"></div>
-        <div id="candidate-video"></div>
-    </section>
+    <div id="candidates-modal" class="modal">
+        <div class="modal-content candidates-modal-content">
+            <span class="close close-candidates">&times;</span>
+            <h2>All Candidates</h2>
+            <div class="all-candidates-list"></div>
+        </div>
+    </div>
+
+    <div id="candidate-details-modal" class="modal">
+        <div class="modal-content candidate-details-content">
+            <span class="close close-details">&times;</span>
+            <h2 id="modal-candidate-name"></h2>
+            <img id="modal-candidate-poster" src="" alt="Candidate Poster">
+            <div id="modal-candidate-manifesto"></div>
+            <div id="modal-candidate-video"></div>
+        </div>
+    </div>
 
     <!-- Apply Modal -->
-<div id="apply-modal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Apply as a Candidate</h2>
-        <form id="apply-form">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required>
+    <div id="apply-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Apply as a Candidate</h2>
+            <form id="apply-form">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
 
-            <label for="poster">Upload Poster:</label>
-            <input type="file" id="poster" name="poster" accept="image/*" required>
+                <label for="poster">Upload Poster:</label>
+                <input type="file" id="poster" name="poster" accept="image/*" required>
 
-            <label for="manifesto">Upload Manifesto (PDF or DOC):</label>
-            <input type="file" id="manifesto" name="manifesto" accept=".pdf,.doc,.docx" required>
+                <label for="manifesto">Upload Manifesto (PDF or DOC):</label>
+                <input type="file" id="manifesto" name="manifesto" accept=".pdf,.doc,.docx" required>
 
-            <label for="video">YouTube Video URL:</label>
-            <input type="url" id="video" name="video" required>
+                <label for="video">YouTube Video URL:</label>
+                <input type="url" id="video" name="video" required>
 
-            <button type="submit">Submit Application</button>
-        </form>
-        <p id="statusMessage"></p>
+                <button type="submit">Submit Application</button>
+            </form>
+            <p id="statusMessage"></p>
+        </div>
     </div>
-</div>
-
 
     <!-- Footer -->
     <footer>
         <div>© 2025 JKUSA. All Rights Reserved.</div>
     </footer>
+
     <script src="Apply.js"></script>
     <script src="candidate.js"></script>
 </body>
