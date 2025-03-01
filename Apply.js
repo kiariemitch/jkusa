@@ -1,43 +1,85 @@
-document.getElementById("apply-form").addEventListener("submit", function (e) {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+    const applyModal = document.getElementById("apply-modal");
+    const applyForm = document.getElementById("apply-form");
+    const applyNowBtn = document.getElementById("apply-now-btn");
+    const applyLink = document.querySelector(".apply-link");
+    const closeBtn = document.querySelector(".close");
 
-    const name = document.getElementById("name").value;
-    const manifestoInput = document.getElementById("manifesto").files[0]; // Corrected manifesto file input
-    const video = document.getElementById("video").value;
-    const posterInput = document.getElementById("poster").files[0]; // Poster file input
-
-    if (!name || !manifestoInput || !video || !posterInput) {
-        alert("All fields are required!");
-        return;
+    function openModal(event) {
+        event.preventDefault();
+        console.log("Opening Apply Modal...");
+        applyModal.style.display = "flex";
     }
 
-    const readerPoster = new FileReader();
-    const readerManifesto = new FileReader();
+    function closeModal() {
+        console.log("Closing Apply Modal...");
+        applyModal.style.display = "none";
+    }
 
-    readerManifesto.onload = function () {
-        const manifestoUrl = readerManifesto.result;
+    if (applyNowBtn) {
+        applyNowBtn.addEventListener("click", openModal);
+    } else {
+        console.error("Apply Now button not found!");
+    }
 
-        readerPoster.onload = function () {
-            const posterUrl = readerPoster.result;
+    if (applyLink) {
+        applyLink.addEventListener("click", openModal);
+    } else {
+        console.error("Apply link in navbar not found!");
+    }
 
-            let candidates = JSON.parse(localStorage.getItem("candidates")) || [];
+    if (closeBtn) {
+        closeBtn.addEventListener("click", closeModal);
+    }
 
-            candidates.push({ 
-                name, 
-                manifesto: manifestoUrl, 
-                video, 
-                poster: posterUrl 
-            });
+    window.addEventListener("click", function (event) {
+        if (event.target === applyModal) {
+            closeModal();
+        }
+    });
 
-            localStorage.setItem("candidates", JSON.stringify(candidates));
+    applyForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-            document.getElementById("statusMessage").innerText = "Application submitted successfully!";
-            
-            document.getElementById("apply-form").reset();
+        const name = document.getElementById("name").value;
+        const manifestoInput = document.getElementById("manifesto").files[0];
+        const video = document.getElementById("video").value;
+        const posterInput = document.getElementById("poster").files[0];
+
+        if (!name || !manifestoInput || !video || !posterInput) {
+            alert("All fields are required!");
+            return;
+        }
+
+        const readerPoster = new FileReader();
+        const readerManifesto = new FileReader();
+
+        readerManifesto.onload = function () {
+            const manifestoUrl = readerManifesto.result;
+
+            readerPoster.onload = function () {
+                const posterUrl = readerPoster.result;
+
+                let candidates = JSON.parse(localStorage.getItem("candidates")) || [];
+
+                candidates.push({
+                    name,
+                    manifesto: manifestoUrl,
+                    video,
+                    poster: posterUrl
+                });
+
+                localStorage.setItem("candidates", JSON.stringify(candidates));
+
+                document.getElementById("statusMessage").innerText = "Application submitted successfully!";
+
+                applyForm.reset();
+                closeModal(); 
+            };
+
+            readerPoster.readAsDataURL(posterInput);
         };
 
-        readerPoster.readAsDataURL(posterInput);
-    };
-
-    readerManifesto.readAsDataURL(manifestoInput);
+        readerManifesto.readAsDataURL(manifestoInput);
+    });
 });

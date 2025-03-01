@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+
+    <!-- Landing Page -->
     <div class="video-container">
         <video autoplay loop muted class="background-video">
             <source src="media/invideo-ai-1080 Energize Your Vote with JKUSA 2025! 2025-02-28 (1).mp4" type="video/mp4">
@@ -14,19 +16,74 @@
         <div class="overlay"></div>
         
         <nav class="navbar">
-            <img src="media\yuEbkvie_400x400.jpg" alt="JKUSA Logo" class="logo-image">
-            <!-- <h1 class="logo">JKUSA</h1> -->
+            <img src="media/yuEbkvie_400x400.jpg" alt="JKUSA Logo" class="logo-image">
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-item">Home</a></li>
-                <li><a href="Apply.html" class="nav-item">Apply</a></li>
-                <li><a href="candidate.html" class="nav-item">Candidates</a></li>
+                <li><a href="#home" class="nav-item">Home</a></li>
+                <li><a href="#about" class="nav-item">About Us</a></li>
+                <li><a href="#candidates" class="nav-item">Candidates</a></li>
+                <li><a href="#" class="nav-item apply-link">Apply</a></li>
             </ul>
         </nav>
         
-        <div class="content">
+        <div class="content" id="home">
             <h1 class="title">Welcome to <span class="highlight">JKUSA 2025</span></h1>
             <p class="subtitle">Your <span class="highlight">Voice</span>, Your <span class="highlight">Future</span></p>
+            <a href="#" id="apply-now-btn" class="apply-now-btn">Apply Now</a>
         </div>
     </div>
+
+    <!-- About Us Section -->
+    <section id="about" class="about-container hidden">
+        <h2>About JKUSA</h2>
+        <p>JKUSA (Jomo Kenyatta University Students Association) is the official student governance body at JKUAT, committed to representing student interests, advocating for their rights, and fostering leadership development.</p>
+        <p>We believe in empowering students through transparent elections, policy advocacy, and inclusive representation. Join us in shaping the future of student leadership!</p>
+    </section>
+
+    <!-- Candidates Section -->
+    <section id="candidates" class="candidates-section">
+        <h2>Meet the Candidates</h2>
+        <div class="candidate-list"></div>
+        <button id="see-more-btn" class="small-btn">See More</button>
+    </section>
+
+    <!-- Candidate Details Section -->
+    <section id="candidate-details" class="candidate-details hidden">
+        <h2 id="candidate-name"></h2>
+        <img id="candidate-poster" src="" alt="Candidate Poster">
+        <div id="candidate-manifesto"></div>
+        <div id="candidate-video"></div>
+    </section>
+
+    <!-- Apply Modal -->
+<div id="apply-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Apply as a Candidate</h2>
+        <form id="apply-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="poster">Upload Poster:</label>
+            <input type="file" id="poster" name="poster" accept="image/*" required>
+
+            <label for="manifesto">Upload Manifesto (PDF or DOC):</label>
+            <input type="file" id="manifesto" name="manifesto" accept=".pdf,.doc,.docx" required>
+
+            <label for="video">YouTube Video URL:</label>
+            <input type="url" id="video" name="video" required>
+
+            <button type="submit">Submit Application</button>
+        </form>
+        <p id="statusMessage"></p>
+    </div>
+</div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div>© 2025 JKUSA. All Rights Reserved.</div>
+    </footer>
+    <script src="Apply.js"></script>
+    <script src="candidate.js"></script>
 </body>
 </html>

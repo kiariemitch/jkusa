@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     const candidateList = document.querySelector(".candidate-list");
     const detailsSection = document.getElementById("candidate-details");
+    const seeMoreBtn = document.getElementById("see-more-btn");
+    
+    let candidates = JSON.parse(localStorage.getItem("candidates")) || [];
+    let visibleCount = 3;
 
     function loadCandidates() {
-        const candidates = JSON.parse(localStorage.getItem("candidates")) || [];
-
-        candidates.forEach(candidate => {
+        candidateList.innerHTML = ""; 
+        candidates.slice(0, visibleCount).forEach(candidate => {
             const candidateDiv = document.createElement("div");
             candidateDiv.classList.add("candidate");
             candidateDiv.innerHTML = `
@@ -15,6 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
             candidateDiv.onclick = () => showCandidateDetails(candidate);
             candidateList.appendChild(candidateDiv);
         });
+
+        if (visibleCount >= candidates.length) {
+            seeMoreBtn.style.display = "none";
+        } else {
+            seeMoreBtn.style.display = "block";
+        }
     }
 
     function showCandidateDetails(candidate) {
@@ -33,22 +42,25 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("candidate-name").innerText = candidate.name;
         document.getElementById("candidate-poster").src = candidate.poster;
     
-        const manifestoContainer = document.getElementById("candidate-manifesto");
-        manifestoContainer.innerHTML = `
+        document.getElementById("candidate-manifesto").innerHTML = `
             <a href="${candidate.manifesto}" target="_blank" class="manifesto-btn">
                 📄 View Manifesto
             </a>
         `;
     
-        const videoContainer = document.getElementById("candidate-video");
-        videoContainer.innerHTML = `
+        document.getElementById("candidate-video").innerHTML = `
             <a href="${videoLink}" target="_blank" class="youtube-btn">
                 ▶ Watch Video
             </a>
         `;
     
-        detailsSection.classList.remove("hidden");
+        detailsSection.style.display = "block";
     }
-    
+
+    seeMoreBtn.addEventListener("click", function () {
+        visibleCount +=4; 
+        loadCandidates();
+    });
+
     loadCandidates();
 });
