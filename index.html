@@ -61,7 +61,9 @@
             <h2 id="modal-candidate-name"></h2>
             <img id="modal-candidate-poster" src="" alt="Candidate Poster">
             <div id="modal-candidate-manifesto"></div>
-            <div id="modal-candidate-video"></div>
+            <div id="modal-candidate-video">
+                <iframe id="candidate-video-frame" width="100%" height="250" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
 
@@ -73,6 +75,9 @@
             <form id="apply-form">
                 <label for="name">Full Name:</label>
                 <input type="text" id="name" name="name" required>
+
+                <label for="position">Position</label>
+                <input type="text" id="position" name="position" placeholder="Enter position vying fo" required />
 
                 <label for="poster">Upload Poster:</label>
                 <input type="file" id="poster" name="poster" accept="image/*" required>
@@ -89,6 +94,17 @@
         </div>
     </div>
 
+    <!-- Ad Popup Modal -->
+<div id="ad-modal" class="modal">
+    <div class="modal-content ad-content">
+        <span class="close close-ad">&times;</span>
+        <h2>📢 Special Announcement!</h2>
+        <p>Don't miss out on the upcoming <strong>Offers</strong>. Stay informed and get yours while stocks last!</p>
+        <img src="media\istockphoto-1350560575-612x612.jpg" alt="Ad Banner" class="ad-image">
+    </div>
+</div>
+
+
     <!-- Footer -->
     <footer>
         <div>© 2025 JKUSA. All Rights Reserved.</div>
@@ -97,5 +113,6 @@
     <script src="Apply.js"></script>
     <script src="candidate.js"></script>
     <script src="Menu.js"></script>
+    <script src="ad.js"></script>
 </body>
 </html>
