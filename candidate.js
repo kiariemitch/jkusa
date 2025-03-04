@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             candidateDiv.innerHTML = `
                 <img src="${candidate.poster}" alt="${candidate.name}">
                 <h3>${candidate.name}</h3>
+                <h3>${candidate.position}</h3>
             `;
             candidateDiv.onclick = () => showCandidateDetails(candidate);
             candidateList.appendChild(candidateDiv);
@@ -34,11 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function showAllCandidates() {
         allCandidatesList.innerHTML = "";
         candidates.forEach(candidate => {
+            console.log(candidate)
             const candidateDiv = document.createElement("div");
             candidateDiv.classList.add("candidate-item");
             candidateDiv.innerHTML = `
                 <img src="${candidate.poster}" alt="${candidate.name}">
                 <h3>${candidate.name}</h3>
+                <h3>${candidate.position}</h3>
             `;
             candidateDiv.onclick = () => showCandidateDetails(candidate);
             allCandidatesList.appendChild(candidateDiv);
@@ -57,19 +60,17 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const videoLink = `https://www.youtube.com/watch?v=${videoID}`;
+        const embedURL = `https://www.youtube.com/embed/${videoID}`;
 
         document.getElementById("modal-candidate-name").innerText = candidate.name;
         document.getElementById("modal-candidate-poster").src = candidate.poster;
         document.getElementById("modal-candidate-manifesto").innerHTML = `
-            <a href="${candidate.manifesto}" target="_blank" class="manifesto-btn">
-                📄 View Manifesto
-            </a>
+            <iframe src="${candidate.manifesto}" width="100%" height="400px"></iframe>
         `;
         document.getElementById("modal-candidate-video").innerHTML = `
-            <a href="${videoLink}" target="_blank" class="youtube-btn">
-                ▶ Watch Video
-            </a>
+            <iframe width="100%" height="250" src="${embedURL}" 
+                frameborder="0" allowfullscreen>
+            </iframe>
         `;
 
         detailsModal.style.display = "flex";

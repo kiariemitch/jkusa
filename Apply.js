@@ -42,11 +42,12 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
 
         const name = document.getElementById("name").value;
+        const position = document.getElementById("position").value
         const manifestoInput = document.getElementById("manifesto").files[0];
         const video = document.getElementById("video").value;
         const posterInput = document.getElementById("poster").files[0];
 
-        if (!name || !manifestoInput || !video || !posterInput) {
+        if (!name || !manifestoInput || !video || !posterInput || !position) {
             alert("All fields are required!");
             return;
         }
@@ -64,13 +65,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 candidates.push({
                     name,
+                    position,
                     manifesto: manifestoUrl,
                     video,
                     poster: posterUrl
                 });
 
                 localStorage.setItem("candidates", JSON.stringify(candidates));
-
+                console.log(candidates)
                 document.getElementById("statusMessage").innerText = "Application submitted successfully!";
 
                 applyForm.reset();
